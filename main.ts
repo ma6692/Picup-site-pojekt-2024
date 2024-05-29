@@ -19,5 +19,23 @@ radio.setGroup(42)
 Speed = 0
 Turning = 0
 basic.forever(function () {
-	
+    Turning = Math.constrain(Turning, -2, 2)
+    Speed = Math.constrain(Speed, -2, 2)
+    if (Turning < 0 || Turning > 0) {
+        bitbot.rotate(BBRobotDirection.Right, 50 * Turning)
+        if (Turning > 0) {
+            bitbot.setPixelColor(11, 0xFFFF00)
+            bitbot.ledClear()
+        } else {
+            bitbot.setPixelColor(5, 0xFFFF00)
+            bitbot.ledClear()
+        }
+    } else if (0 < Speed) {
+        if (5 < bitbot.sonar(BBPingUnit.Centimeters)) {
+            bitbot.go(BBDirection.Forward, 50 * Speed)
+            bitbot.setLedColor(0xFFFFFF)
+        }
+    } else {
+        bitbot.go(BBDirection.Forward, 50 * Speed)
+    }
 })
