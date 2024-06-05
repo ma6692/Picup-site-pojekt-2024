@@ -28,16 +28,16 @@ basic.forever(function () {
     Speed = Math.constrain(Speed, -2, 2)
     if (Turning < 0 || Turning > 0) {
         if (Turning > 0) {
-            bitbot.rotate(BBRobotDirection.Right, 50 * Turning)
+            bitbot.rotate(BBRobotDirection.Right, 20 * Turning)
             bitbot.setPixelColor(5, 0xFFFFFF)
             bitbot.setPixelColor(11, 0xFFFF00)
         } else {
-            bitbot.rotate(BBRobotDirection.Left, 50 * (-1 * Turning))
+            bitbot.rotate(BBRobotDirection.Left, 20 * (-1 * Turning))
             bitbot.setPixelColor(11, 0xFFFFFF)
             bitbot.setPixelColor(5, 0xFFFF00)
         }
     } else if (0 < Speed) {
-        if (5 < bitbot.sonar(BBPingUnit.Centimeters)) {
+        if (true) {
             bitbot.go(BBDirection.Forward, 50 * Speed)
             bitbot.setLedColor(0xFFFFFF)
         }
