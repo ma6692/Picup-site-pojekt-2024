@@ -22,11 +22,12 @@ basic.forever(function () {
     Turning = Math.constrain(Turning, -2, 2)
     Speed = Math.constrain(Speed, -2, 2)
     if (Turning < 0 || Turning > 0) {
-        bitbot.rotate(BBRobotDirection.Right, 50 * Turning)
         if (Turning > 0) {
+            bitbot.rotate(BBRobotDirection.Right, 50 * Turning)
             bitbot.setPixelColor(11, 0xFFFF00)
             bitbot.ledClear()
         } else {
+            bitbot.rotate(BBRobotDirection.Left, 50 * (-1 * Turning))
             bitbot.setPixelColor(5, 0xFFFF00)
             bitbot.ledClear()
         }
@@ -36,6 +37,6 @@ basic.forever(function () {
             bitbot.setLedColor(0xFFFFFF)
         }
     } else {
-        bitbot.go(BBDirection.Forward, 50 * Speed)
+        bitbot.go(BBDirection.Reverse, 50 * (-1 * Speed))
     }
 })
