@@ -6,10 +6,15 @@ radio.onReceivedNumber(function (receivedNumber) {
     } else if (receivedNumber == 0) {
         Turning = 0
         Speed = 0
+        bitbot.stop(BBStopMode.Coast)
+        bitbot.ledClear()
     } else if (receivedNumber == 3) {
         Turning += -1
     } else if (receivedNumber == 4) {
         Turning += 1
+    } else if (receivedNumber == 5) {
+        Turning = 0
+        bitbot.setLedColor(0xFFFFFF)
     }
 })
 let Turning = 0
@@ -24,12 +29,12 @@ basic.forever(function () {
     if (Turning < 0 || Turning > 0) {
         if (Turning > 0) {
             bitbot.rotate(BBRobotDirection.Right, 50 * Turning)
+            bitbot.setPixelColor(5, 0xFFFFFF)
             bitbot.setPixelColor(11, 0xFFFF00)
-            bitbot.ledClear()
         } else {
             bitbot.rotate(BBRobotDirection.Left, 50 * (-1 * Turning))
+            bitbot.setPixelColor(11, 0xFFFFFF)
             bitbot.setPixelColor(5, 0xFFFF00)
-            bitbot.ledClear()
         }
     } else if (0 < Speed) {
         if (5 < bitbot.sonar(BBPingUnit.Centimeters)) {
